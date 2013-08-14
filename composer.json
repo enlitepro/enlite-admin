@@ -1,5 +1,17 @@
 {
     "name": "enlitepro/enlite-admin",
+    "authors": [
+        {
+            "name": "Evgeny Shpilevsky",
+            "email": "evgeny@shpilevsky.com",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "framework",
+        "zf2",
+        "admin"
+    ],
     "require": {
         "php":                                  ">=5.4",
         "zendframework/zendframework":          ">=2.2.2",
