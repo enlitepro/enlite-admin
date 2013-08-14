@@ -52,7 +52,7 @@ class AdminNavigationFactoryTest extends \PHPUnit_Framework_TestCase
     public function testGetEntitiesPageEmpty()
     {
         $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceManager', ['get']);
-        $serviceLocator->expects($this->once())->method('get')->with('admin-entities')
+        $serviceLocator->expects($this->once())->method('get')->with('EnliteAdminEntities')
             ->will($this->returnValue(new Container()));
 
         $factory = $this->getMock('EnliteAdmin\Navigation\Service\AdminNavigationFactory');
@@ -69,7 +69,7 @@ class AdminNavigationFactoryTest extends \PHPUnit_Framework_TestCase
         $container->addEntity(new Entity('b', new EntityOptions(['allow' => []])));
 
         $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceManager', ['get']);
-        $serviceLocator->expects($this->once())->method('get')->with('admin-entities')
+        $serviceLocator->expects($this->once())->method('get')->with('EnliteAdminEntities')
             ->will($this->returnValue($container));
 
         $factory = $this->getMock(

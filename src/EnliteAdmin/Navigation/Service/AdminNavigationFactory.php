@@ -37,7 +37,7 @@ class AdminNavigationFactory extends AbstractNavigationFactory
     protected function getEntitiesPage(ServiceLocatorInterface $serviceLocator)
     {
         /** @var Container $entities */
-        $entities = $serviceLocator->get('admin-entities');
+        $entities = $serviceLocator->get('EnliteAdminEntities');
 
         $config = array();
         foreach ($entities->getEntities() as $entity) {

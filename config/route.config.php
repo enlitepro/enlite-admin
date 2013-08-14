@@ -8,7 +8,7 @@ return array(
                 'options' => array(
                     'route' => '/admin',
                     'defaults' => array(
-                        'controller' => 'admin-index',
+                        'controller' => 'EnliteAdminIndex',
                         'action' => 'index',
                     ),
                 ),
@@ -19,7 +19,7 @@ return array(
                         'options' => array(
                             'route' => '/entity',
                             'defaults' => array(
-                                'controller' => 'admin-entity',
+                                'controller' => 'EnliteAdminEntity',
                                 'action' => 'index',
                             )
                         ),

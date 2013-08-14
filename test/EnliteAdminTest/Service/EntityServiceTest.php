@@ -19,7 +19,7 @@ class EntityServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetEntities()
     {
         $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceManager', ['get']);
-        $serviceLocator->expects($this->once())->method('get')->with('admin-entities');
+        $serviceLocator->expects($this->once())->method('get')->with('EnliteAdminEntities');
 
         $service = new EntityService($serviceLocator);
         $service->getEntities();
@@ -32,7 +32,7 @@ class EntityServiceTest extends \PHPUnit_Framework_TestCase
         $container->addEntity($entity);
 
         $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceManager', ['get']);
-        $serviceLocator->expects($this->once())->method('get')->with('admin-entities')->will(
+        $serviceLocator->expects($this->once())->method('get')->with('EnliteAdminEntities')->will(
             $this->returnValue($container)
         );
 

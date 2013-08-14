@@ -7,7 +7,7 @@ return array(
             /*
              * Application module - assets configuration
              */
-            'FtdAdmin' => array(
+            'EnliteAdmin' => array(
 
                 # module root path for your css and js files
                 'root_path' => __DIR__ . '/../assets',
@@ -19,15 +19,11 @@ return array(
                             'css/style.css'
                         ),
                         'filters' => array(
-                            'CssImportFilter' => array(
-                                'name' => 'Assetic\Filter\CssImportFilter',
-                            ),
-                            'CssRewriteFilter' => array(
-                                'name' => 'Assetic\Filter\CssRewriteFilter'
-                            )
+                            'CssImportFilter' => 'Assetic\Filter\CssImportFilter',
+                            'CssRewriteFilter' => 'Assetic\Filter\CssRewriteFilter'
                         ),
                         'options' => array(
-                            'output' => 'admin.css'
+                            'output' => 'admin.*.css'
                         ),
                     ),
                     'admin_js' => array(
