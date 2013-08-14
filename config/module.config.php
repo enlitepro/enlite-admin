@@ -1,6 +1,6 @@
 <?php
 
-namespace FtdAdmin;
+namespace EnliteAdmin;
 
 return array(
     'service_manager' => array(

@@ -1,5 +1,5 @@
 {
-    "name": "ftdebugger/ftd-admin",
+    "name": "enlitepro/enlite-admin",
     "require": {
         "php":                                  ">=5.4",
         "zendframework/zendframework":          ">=2.2.2",
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-0": {
-            "FtdAdmin": "src"
+            "EnliteAdmin": "src"
         }
     }
 }
