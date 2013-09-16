@@ -16,8 +16,8 @@
     "require": {
         "php":                                  ">=5.4",
         "zendframework/zendframework":          ">=2.2.2",
-        "doctrine/doctrine-orm-module":         ">=0.8.0-beta1,<0.8.1",
-        "doctrine/doctrine-module":             ">=0.8.0-beta1,<0.8.1",
+        "doctrine/doctrine-orm-module":         "0.8.*@beta",
+        "doctrine/doctrine-module":             "0.8.*@beta",
         "doctrine/cache":                       "v1.0",
         "zf-commons/zfc-twig":                  "~1.1.5",
         "zf-commons/zfc-user":                  "~0.1",
