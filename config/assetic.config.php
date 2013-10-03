@@ -14,7 +14,7 @@ return array(
                 # collection od assets
                 'collections' => array(
 
-                    'admin_css' => array(
+                    'enlite_admin_css' => array(
                         'assets' => array(
                             'css/style.css'
                         ),
@@ -23,30 +23,22 @@ return array(
                             'CssRewriteFilter' => 'Assetic\Filter\CssRewriteFilter'
                         ),
                         'options' => array(
-                            'output' => 'admin.*.css'
+                            'output' => 'enlite/admin.*.css'
                         ),
                     ),
-                    'admin_js' => array(
+                    'enlite_admin_js' => array(
                         'assets' => array(
                             'js/jquery.min.js',
                             'js/bootstrap.min.js',
                         ),
-                        'filters' => array(
-                            '?UglifyJs2Filter' => array(
-                                'name' => 'Assetic\Filter\UglifyJs2Filter',
-                                'option' => array(
-                                    'uglifyjsBin' => './node_modules/.bin/uglifyjs'
-                                )
-                            )
-                        ),
+                        'filters' => array(),
                         'options' => array(
-                            'output' => 'admin.*.js'
+                            'output' => 'enlite/admin.*.js'
                         ),
                     ),
                     'base_images' => array(
                         'assets' => array(
-                            'img/*.png',
-                            'img/*.ico',
+                            'fonts/**',
                         ),
                         'options' => array(
                             'move_raw' => true,
@@ -58,8 +50,8 @@ return array(
 
         'routes' => array(
             'admin/?.*' => array(
-                '@admin_js',
-                '@admin_css',
+                '@enlite_admin_js',
+                '@enlite_admin_css',
             ),
         )
     )
