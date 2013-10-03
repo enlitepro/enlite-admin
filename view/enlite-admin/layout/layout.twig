@@ -20,17 +20,17 @@
         {{ headScript() }}
     {% endblock %}
 </head>
-<body>
-<div class="container-fluid">
+<body class="admin">
+<div class="container">
     <div class="row">
-        <div class="span3 sidebar">
+        <div class="col-md-3 sidebar">
             <a class="logo" href="{{ url('home') }}">Admin panel</a>
 
             <div class="sidebar-nav">
                 {{ navigation('EnliteAdminNavigation').menu().setUlClass('nav nav-list').setPartial('')|raw }}
             </div>
         </div>
-        <div class="span10 content">
+        <div class="col-md-9 content">
             {% block content %}{{ content|raw }}{% endblock content %}
         </div>
     </div>

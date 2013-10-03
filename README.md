@@ -10,7 +10,7 @@ The recommended way to install is through composer.
 ```json
 {
     "require": {
-        "enlitepro/enlite-admin": "1.*"
+        "enlitepro/enlite-admin": "1.1.*"
     }
 }
 ```
