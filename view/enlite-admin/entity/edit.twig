@@ -6,7 +6,7 @@
         <h1>Edit {{ entity.name }}</h1>
     </div>
 
-    {% do form.setAttribute(url('admin/entity/entity/edit', {'entity': entity.name, 'id': row.id})) %}
+    {% do form.setAttribute('action', url('admin/entity/entity/edit', {'entity': entity.name, 'id': row.id})) %}
     {{ form(form) }}
 
 {% endblock %}
