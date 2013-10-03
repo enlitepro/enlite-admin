@@ -89,6 +89,7 @@ class EntityController extends AbstractActionController
 
         return array(
             'entity' => $entity,
+            'model' => $model,
             'form' => $form
         );
     }
@@ -105,9 +106,7 @@ class EntityController extends AbstractActionController
         $entity->getService()->remove($model);
         $this->getEntityManager()->flush();
 
-        $this->redirect()->toRoute('admin/entity/entity', ['entity' => $entity->getName()]);
-
-        return [];
+        return $this->redirect()->toRoute('admin/entity/entity', ['entity' => $entity->getName()]);
     }
 
     /**

@@ -6,6 +6,7 @@
         <h1>Add "{{ entity.name }}"</h1>
     </div>
 
+    {% do form.setAttribute(url('admin/entity/entity/create', {'entity': entity.name})) %}
     {{ form(form) }}
 
 {% endblock %}
