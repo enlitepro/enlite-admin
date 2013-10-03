@@ -26,7 +26,7 @@
     "suggest": {
         "neilime/zf2-twb-bundle":               "2.*",
         "bjyoungblood/bjy-authorize":           "~1.3",
-        "enlitepro/enlite-assetic":             "dev-master"
+        "enlitepro/enlite-assetic":             "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit":                      "~3.7"
