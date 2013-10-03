@@ -24,7 +24,7 @@
         "zf-commons/zfc-user-doctrine-orm":     "~0.1"
     },
     "suggest": {
-        "neilime/zf2-twb-bundle":               "dev-master",
+        "neilime/zf2-twb-bundle":               "1.*",
         "bjyoungblood/bjy-authorize":           "~1.3",
         "enlitepro/enlite-assetic":             "dev-master"
     },
