@@ -121,7 +121,7 @@ class EntityController extends AbstractActionController
         $form->bind($model);
 
         if ($this->getRequest()->isPost()) {
-            $form->setData($this->params()->fromPost());
+            $form->setData(array_merge($this->params()->fromPost(), $this->params()->fromFiles()));
             if ($form->isValid()) {
                 $entity->getService()->save($model);
                 $this->getEntityManager()->flush();
