@@ -175,7 +175,7 @@ class EntityController extends AbstractActionController
      */
     public function getMessages()
     {
-        return $this->flashMessenger()->getMessages();
+        return $this->flashMessenger()->getSuccessMessages();
     }
 
 }
