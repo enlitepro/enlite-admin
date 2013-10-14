@@ -3,6 +3,7 @@
 namespace EnliteAdmin;
 
 use EnliteAdmin\Service\EntityService;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ServiceManager\ServiceManager;
@@ -11,11 +12,11 @@ use Zend\ServiceManager\ServiceManager;
  * @author Evgeny Shpilevsky <evgeny@shpilevsky.com>
  */
 
-class Module implements ConfigProviderInterface, ServiceProviderInterface
+class Module implements ConfigProviderInterface, ServiceProviderInterface, AutoloaderProviderInterface
 {
 
     /**
-     * @return array|mixed|\Traversable
+     * {@inheritdoc}
      */
     public function getConfig()
     {
@@ -30,7 +31,7 @@ class Module implements ConfigProviderInterface, ServiceProviderInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getAutoloaderConfig()
     {
@@ -44,21 +45,18 @@ class Module implements ConfigProviderInterface, ServiceProviderInterface
     }
 
     /**
-     * Expected to return \Zend\ServiceManager\Config object or array to
-     * seed such an object.
-     *
-     * @return array|\Zend\ServiceManager\Config
+     * {@inheritdoc}
      */
     public function getServiceConfig()
     {
         return array(
             'factories' => array(
-                'admin-config' => function (ServiceManager $sm) {
+                'EnliteAdminConfiguration' => function (ServiceManager $sm) {
                     $config = $sm->get('Config');
 
                     return new Configuration($config['admin']);
                 },
-                'Admin\Service\EntityService' => function (ServiceManager $sm) {
+                'EnliteAdminEntityService' => function (ServiceManager $sm) {
                     return new EntityService($sm);
                 }
             )

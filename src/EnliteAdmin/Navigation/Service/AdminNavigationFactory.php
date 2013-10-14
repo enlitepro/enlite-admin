@@ -5,6 +5,7 @@
 
 namespace EnliteAdmin\Navigation\Service;
 
+use EnliteAdmin\Configuration;
 use EnliteAdmin\Entities\Container;
 use Zend\Navigation\Service\AbstractNavigationFactory;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -24,7 +25,12 @@ class AdminNavigationFactory extends AbstractNavigationFactory
     {
         if (null === $this->pages) {
             $pages = parent::getPages($serviceLocator);
-            $this->pages = ArrayUtils::merge($pages, $this->getEntitiesPage($serviceLocator));
+
+            /** @var Configuration $configuration */
+            $configuration = $serviceLocator->get('EnliteAdminConfiguration');
+            if ($configuration->getEnableNavigation()) {
+                $this->pages = ArrayUtils::merge($pages, $this->getEntitiesPage($serviceLocator));
+            }
         }
 
         return $this->pages;

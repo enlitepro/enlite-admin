@@ -18,9 +18,14 @@ class Configuration extends AbstractOptions
     protected $entities = array();
 
     /**
+     * @var bool
+     */
+    protected $enableNavigation = true;
+
+    /**
      * Set value of Entities
      *
-     * @param  array                      $entities
+     * @param  array $entities
      * @throws Exception\RuntimeException
      */
     public function setEntities($entities)
@@ -45,6 +50,22 @@ class Configuration extends AbstractOptions
     public function getEntities()
     {
         return $this->entities;
+    }
+
+    /**
+     * @param boolean $enableNavigation
+     */
+    public function setEnableNavigation($enableNavigation)
+    {
+        $this->enableNavigation = $enableNavigation;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getEnableNavigation()
+    {
+        return $this->enableNavigation;
     }
 
 }

@@ -142,22 +142,18 @@ class EntityController extends AbstractActionController
     }
 
     /**
-     * Return value of EntityService
-     *
      * @return \EnliteAdmin\Service\EntityService
      */
     public function getEntityService()
     {
         if (null === $this->entityService) {
-            $this->entityService = $this->getServiceLocator()->get('Admin\Service\EntityService');
+            $this->entityService = $this->getServiceLocator()->get('EnliteAdminEntityService');
         }
 
         return $this->entityService;
     }
 
     /**
-     * Set value of EntityService
-     *
      * @param \EnliteAdmin\Service\EntityService $entityService
      */
     public function setEntityService($entityService)

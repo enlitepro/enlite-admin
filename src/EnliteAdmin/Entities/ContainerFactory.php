@@ -21,7 +21,7 @@ class ContainerFactory implements FactoryInterface
     {
         $container = new Container();
         /** @var Configuration $config */
-        $config = $serviceLocator->get('admin-config');
+        $config = $serviceLocator->get('EnliteAdminConfiguration');
 
         foreach ($config->getEntities() as $name => $options) {
             $entity = new Entity($name, $options);

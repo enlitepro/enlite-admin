@@ -37,6 +37,7 @@ html, body {
             color: #fff;
             text-decoration: none;
             text-shadow: none;
+            padding: 5px 15px;
         }
 
         .admin .sidebar .sidebar-nav A:hover {
