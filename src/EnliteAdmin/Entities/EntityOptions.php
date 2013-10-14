@@ -42,6 +42,11 @@ class EntityOptions extends AbstractOptions
     protected $filter;
 
     /**
+     * @var string
+     */
+    protected $form;
+
+    /**
      * Set value of Entity
      *
      * @param string $entity
@@ -144,6 +149,22 @@ class EntityOptions extends AbstractOptions
     public function getFilter()
     {
         return $this->filter;
+    }
+
+    /**
+     * @param string $form
+     */
+    public function setForm($form)
+    {
+        $this->form = $form;
+    }
+
+    /**
+     * @return string
+     */
+    public function getForm()
+    {
+        return $this->form;
     }
 
     /**

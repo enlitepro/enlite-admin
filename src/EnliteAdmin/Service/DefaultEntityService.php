@@ -115,15 +115,21 @@ class DefaultEntityService implements EntityServiceInterface
      */
     public function getForm()
     {
-        $builder = new AnnotationBuilder();
-        $form = $builder->createForm($this->entity->getClassName());
-        $form->add(new Button('submit', ['label' => 'save']));
-        $form->get('submit')->setAttribute('type', 'submit');
+        if ($this->entity->getOptions()->getForm()) {
+            $formAlias = $this->entity->getOptions()->getForm();
+            $form = $this->entity->getServiceLocator()->get($formAlias);
+        }
+        else {
+            $builder = new AnnotationBuilder();
+            $form = $builder->createForm($this->entity->getClassName());
+            $form->add(new Button('submit', ['label' => 'save']));
+            $form->get('submit')->setAttribute('type', 'submit');
 
-        if ($form->getHydrator() instanceof ArraySerializable) {
-            $reflection = new \ReflectionClass($this->entity->getClassName());
-            if (!$reflection->hasMethod('getArrayCopy')) {
-                $form->setHydrator(new ClassMethods());
+            if ($form->getHydrator() instanceof ArraySerializable) {
+                $reflection = new \ReflectionClass($this->entity->getClassName());
+                if (!$reflection->hasMethod('getArrayCopy')) {
+                    $form->setHydrator(new ClassMethods());
+                }
             }
         }
 
