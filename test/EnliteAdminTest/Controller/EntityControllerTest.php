@@ -11,6 +11,7 @@ use EnliteAdmin\Entities\Entity;
 use EnliteAdmin\Entities\EntityOptions;
 use EnliteAdminTest\Mock\EntityMock;
 use Zend\Form\Form;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 use Zend\Mvc\Controller\Plugin\Params;
 use Zend\Paginator\Adapter\ArrayAdapter;
 use Zend\Paginator\Paginator;
@@ -59,12 +60,15 @@ class EntityControllerTest extends \PHPUnit_Framework_TestCase
     public function testListAction()
     {
         $entity = $this->getEntity();
-        $controller = $this->getController(['loadEntity', 'notFoundAction']);
+        $controller = $this->getController(['loadEntity', 'notFoundAction', 'getMessages']);
         $controller->expects($this->once())->method('loadEntity')->will($this->returnValue($entity));
 
         $this->paramsPlugin->expects($this->any())->method('fromQuery')->will($this->returnValue(['a' => 1]));
         $this->paramsPlugin->expects($this->once())->method('fromRoute')->with('page')
             ->will($this->returnValue(2));
+
+        $controller->expects($this->once())->method('getMessages')
+            ->will($this->returnValue(array()));
 
         $entities = new Paginator(
             new ArrayAdapter(

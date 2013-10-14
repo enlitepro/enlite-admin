@@ -53,7 +53,8 @@ class EntityController extends AbstractActionController
             'paginator' => $list,
             'table' => $table,
             'filter' => $filter,
-            'filter_open' => count($this->params()->fromQuery())
+            'filter_open' => count($this->params()->fromQuery()),
+            'flashMessages' => $this->getMessages()
         );
     }
 
@@ -167,6 +168,14 @@ class EntityController extends AbstractActionController
     public function getEntityManager()
     {
         return $this->getServiceLocator()->get('entity_manager');
+    }
+
+    /**
+     * @return array
+     */
+    public function getMessages()
+    {
+        return $this->flashMessenger()->getMessages();
     }
 
 }
