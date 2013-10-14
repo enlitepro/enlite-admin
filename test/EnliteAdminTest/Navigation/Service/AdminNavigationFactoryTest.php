@@ -5,6 +5,7 @@
 
 namespace EnliteAdminTest\Navigation\Service;
 
+use EnliteAdmin\Configuration;
 use EnliteAdmin\Entities\Container;
 use EnliteAdmin\Entities\Entity;
 use EnliteAdmin\Entities\EntityOptions;
@@ -27,8 +28,12 @@ class AdminNavigationFactoryTest extends \PHPUnit_Framework_TestCase
         $pages = array(new Mvc());
 
         $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceManager', ['get']);
-        $serviceLocator->expects($this->once())->method('get')->with('Config')
+
+        $serviceLocator->expects($this->at(0))->method('get')->with('Config')
             ->will($this->returnValue(array('navigation' => ['admin' => 'test'])));
+
+        $serviceLocator->expects($this->at(1))->method('get')->with('EnliteAdminConfiguration')
+            ->will($this->returnValue(new Configuration()));
 
         $factory = $this->getMock(
             'EnliteAdmin\Navigation\Service\AdminNavigationFactory',

@@ -23,7 +23,7 @@ class ContainerFactoryTest extends \PHPUnit_Framework_TestCase
         );
 
         $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceManager', ['get']);
-        $serviceLocator->expects($this->once())->method('get')->with('admin-config')->will($this->returnValue($config));
+        $serviceLocator->expects($this->once())->method('get')->with('EnliteAdminConfiguration')->will($this->returnValue($config));
 
         $factory = new ContainerFactory();
         /** @var Container $container */
