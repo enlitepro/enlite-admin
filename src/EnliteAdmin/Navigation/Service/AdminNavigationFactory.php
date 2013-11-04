@@ -49,7 +49,7 @@ class AdminNavigationFactory extends AbstractNavigationFactory
         foreach ($entities->getEntities() as $entity) {
             if ($entity->getOptions()->isAllowList()) {
                 $config[] = array(
-                    'label' => $entity->getName(),
+                    'label' => $entity->getTitle(),
                     'route' => 'admin/entity/entity',
                     'params' => array(
                         'entity' => $entity->getName()
