@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="page-header">
-        <h1>List of {{ entity.name }}
+        <h1>List of {{ entity.title }}
             {% if entity.options.isAllowCreate() %}
                 <a href="{{ url('admin/entity/entity/create', {'entity': entity.name}) }}" class="btn btn-info">Add</a>
             {% endif %}

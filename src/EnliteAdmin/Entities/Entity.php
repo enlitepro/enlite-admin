@@ -34,6 +34,13 @@ class Entity
     protected $serviceLocator;
 
     /**
+     * The title
+     *
+     * @var string
+     */
+    protected $title;
+
+    /**
      * @param string        $name
      * @param EntityOptions $options
      */
@@ -128,4 +135,29 @@ class Entity
         return $this->getOptions()->getEntity();
     }
 
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        if (is_null($this->title)) {
+            $options = $this->getOptions();
+            if (!is_null($options->getTitle())) {
+                $this->title = $options->getTitle();
+            } else {
+                $this->title = $this->getName();
+            }
+        }
+        return $this->title;
+    }
+
 }
+

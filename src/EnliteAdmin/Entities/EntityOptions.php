@@ -40,6 +40,13 @@ class EntityOptions extends AbstractOptions
      * @var array
      */
     protected $filter;
+    
+    /**
+     * The title
+     *
+     * @var string
+     */
+    protected $title;
 
     /**
      * @var string
@@ -197,6 +204,22 @@ class EntityOptions extends AbstractOptions
     public function isAllowList()
     {
         return in_array(self::ALLOW_LIST, $this->getAllow());
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
 }
