@@ -35,19 +35,23 @@
                 <td>
                     {% if row.id %}
                         {% if entity.options.isAllowRemove() %}
-                            <a href="#remove{{ row.id }}" data-toggle="modal" role="button" class="btn btn-danger btn-small"><i class="glyphicon glyphicon-remove"></i></a>
+                            <a data-target="#remove{{ row.id }}" data-toggle="modal" role="button" class="btn btn-danger btn-small"><i class="glyphicon glyphicon-remove"></i></a>
                             <div id="remove{{ row.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h3 id="myModalLabel">Approve</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you really want to remove this entity?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <form method="post" action="{{ url('admin/entity/entity/remove', {'entity': entity.name}) }}">
-                                        <button class="btn btn-primary btn-danger" name="id" value="{{ row.id }}">remove</button>
-                                    </form>
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h3 id="myModalLabel">Approve</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you really want to remove this entity?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="post" action="{{ url('admin/entity/entity/remove', {'entity': entity.name}) }}">
+                                                <button class="btn btn-primary btn-danger" name="id" value="{{ row.id }}">remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% endif %}
