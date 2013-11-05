@@ -150,8 +150,8 @@ class Entity
     {
         if (is_null($this->title)) {
             $options = $this->getOptions();
-            if (isset($options['title'])) {
-                $this->title = $options['title'];
+            if (!is_null($options->getTitle())) {
+                $this->title = $options->getTitle();
             } else {
                 $this->title = $this->getName();
             }
