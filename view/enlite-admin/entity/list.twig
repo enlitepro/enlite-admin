@@ -36,7 +36,7 @@
                     {% if row.id %}
                         {% if entity.options.isAllowRemove() %}
                             <a data-target="#remove{{ row.id }}" data-toggle="modal" role="button" class="btn btn-danger btn-small"><i class="glyphicon glyphicon-remove"></i></a>
-                            <div id="remove{{ row.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div id="remove{{ row.id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
