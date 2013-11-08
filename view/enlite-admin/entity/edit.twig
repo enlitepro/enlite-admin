@@ -9,4 +9,8 @@
     {% do form.setAttribute('action', url('admin/entity/entity/edit', {'entity': entity.name, 'id': model.id})) %}
     {{ form(form) }}
 
+    {% if entity.getOptions().getPostView() %}
+        {{ include(entity.getOptions().getPostView()) }}
+    {% endif %}
+
 {% endblock %}

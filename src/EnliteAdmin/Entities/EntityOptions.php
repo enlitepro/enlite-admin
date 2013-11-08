@@ -54,6 +54,13 @@ class EntityOptions extends AbstractOptions
     protected $form;
 
     /**
+     * The postView
+     *
+     * @var string
+     */
+    protected $postView;
+
+    /**
      * Set value of Entity
      *
      * @param string $entity
@@ -220,6 +227,22 @@ class EntityOptions extends AbstractOptions
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param string $postView
+     */
+    public function setPostView($postView)
+    {
+        $this->postView = $postView;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostView()
+    {
+        return $this->postView;
     }
 
 }
