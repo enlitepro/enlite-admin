@@ -31,6 +31,29 @@
             </div>
         </div>
         <div class="col-xs-9 content">
+            {% block messages %}
+                {% set messageError = flashMessenger().render('error') %}
+                {% if messageError %}
+                    {{ alert(messageError, 'alert-error') }}
+                {% endif %}
+
+                {% set messageSuccess = flashMessenger().render('success') %}
+                {% if messageSuccess %}
+                    {{ alert(messageSuccess, 'alert-success') }}
+                {% endif %}
+
+                {% set messageInfo = flashMessenger().render('info') %}
+                {% if messageInfo %}
+                    {{ alert(messageInfo, 'alert-info') }}
+                {% endif %}
+
+                {% set messageDefault = flashMessenger().render() %}
+                {% if messageDefault %}
+                    {{ alert(messageDefault) }}
+                {% endif %}
+
+            {% endblock messages %}
+
             {% block content %}{{ content|raw }}{% endblock content %}
         </div>
     </div>
