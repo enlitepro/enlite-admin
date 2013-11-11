@@ -20,8 +20,8 @@ class ACLFilterFormFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $form = new Form();
-        $form->add(new Element\Text('filter'), ['label' => 'Resource']);
-        $form->add(new Element\Button('submit'), ['label' => 'filter']);
+        $form->add(new Element\Text('filter', ['label' => 'Resource']));
+        $form->add(new Element\Button('submit', ['label' => 'filter']));
 
         $form->setAttribute('method', 'GET');
         $form->get('submit')->setAttribute('type', 'submit');

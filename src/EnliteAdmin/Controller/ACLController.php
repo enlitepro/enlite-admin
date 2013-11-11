@@ -47,7 +47,7 @@ class ACLController extends AbstractActionController
         }
 
         return array(
-            'filter' => $filter,
+            'filter' => $filterForm,
             'table' => $table,
             'resources' => $resources,
             'routeResources' => $routeResources,
