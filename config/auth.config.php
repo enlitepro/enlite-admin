@@ -10,6 +10,7 @@ return array(
                 array('route' => 'admin/entity/entity/remove', 'roles' => array('admin')),
                 array('route' => 'admin/entity/entity/create', 'roles' => array('admin')),
                 array('route' => 'admin/entity/entity/edit', 'roles' => array('admin')),
+                array('route' => 'admin/acl', 'roles' => array('admin')),
             ),
         )
     )

@@ -15,6 +15,11 @@ return array(
                 'route' => 'admin',
                 'resource' => 'admin'
             ),
+            'acl' => array(
+                'label' => 'ACL',
+                'route' => 'admin/acl',
+                'resource' => 'admin'
+            )
         )
     )
 );

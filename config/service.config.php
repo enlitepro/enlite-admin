@@ -11,6 +11,7 @@ return array(
         'invokables' => array(
             'EnliteAdminIndex' => 'EnliteAdmin\Controller\IndexController',
             'EnliteAdminEntity' => 'EnliteAdmin\Controller\EntityController',
+            'EnliteAdminACL' => 'Admin\Controller\ACLController'
         )
     ),
 );
