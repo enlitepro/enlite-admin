@@ -73,6 +73,7 @@ return array(
                         'options' => array(
                             'route' => '/acl',
                             'defaults' => array(
+                                'controller' => 'EnliteAdminACL',
                                 'action' => 'index'
                             ),
                         ),

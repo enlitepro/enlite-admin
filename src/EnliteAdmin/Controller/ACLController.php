@@ -1,24 +1,27 @@
 <?php
 
-namespace Admin\Controller;
+namespace EnliteAdmin\Controller;
 
-use BjyAuthorize\Service\Authorize;
+use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Permissions\Acl\Acl;
 
 class ACLController extends AbstractActionController
 {
 
     public function indexAction()
     {
-        if (!class_exists('BjyAuthorize\Module')) {
-            return $this->createHttpNotFoundModel($this->getResponse());
+        /** @var Acl $acl */
+        $acl = $this->getServiceLocator()->get('EnliteAdminACLProvider');
+        /** @var Form $filterForm */
+        $filterForm = $this->getServiceLocator()->get('EnliteAdminACLFilterForm');
+        $filterForm->setData($this->params()->fromQuery());
+
+        if ($filterForm->isValid()) {
+            $filter = $filterForm->getData()['filter'];
+        } else {
+            $filter = null;
         }
-
-        $filter = $this->params()->fromQuery('filter');
-
-        /** @var Authorize $auth */
-        $auth = $this->getServiceLocator()->get('BjyAuthorize\Service\Authorize');
-        $acl = $auth->getAcl();
 
         $resources = array();
         $routeResources = array();
