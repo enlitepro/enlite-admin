@@ -1,0 +1,56 @@
+{% extends "enlite-admin/layout/layout" %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h1>ACL table
+            <button class="btn btn-success" data-toggle="collapse" data-target="#filter">Filter ↵</button>
+        </h1>
+    </div>
+
+    <div id="filter" class="collapse{% if filter_open %} in{% endif %}">
+        {{ form(filter) }}
+    </div>
+
+    <h2>Resources</h2>
+    <table class="table table-bordered table-acl">
+        <tr class="header">
+            <th></th>
+
+            {% for resource in resources %}
+                <th>{{ resource }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for role, row in table %}
+            <tr>
+                <th>{{ role }}</th>
+
+                {% for resource in resources %}
+                    <td>{% if row[resource] %}x{% endif %}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Routes</h2>
+    <table class="table table-bordered table-acl">
+        <tr class="header">
+            <th></th>
+
+            {% for resource in routeResources %}
+                <th>{{ resource[6:] }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for role, row in table %}
+            <tr>
+                <th>{{ role }}</th>
+
+                {% for resource in routeResources %}
+                    <td>{% if row[resource] %}x{% endif %}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
