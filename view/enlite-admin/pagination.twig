@@ -4,8 +4,8 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 
 {% if pageCount > 1 %}
 
-    <div class="pagination">
-        <ul>
+    <div>
+        <ul class="pagination">
             {% if previous %}
                 <li><a href="{{ url(route, {page: previous}|merge(routeParams)) }}">&laquo;</a></li>
             {% else %}
