@@ -59,6 +59,13 @@ class EntityOptions extends AbstractOptions
      * @var string
      */
     protected $postView;
+    
+    /**
+     * The order
+     *
+     * @var array For example ['title' => 'asc'] or ['title']
+     */
+    protected $order = [];
 
     /**
      * Set value of Entity
@@ -243,6 +250,22 @@ class EntityOptions extends AbstractOptions
     public function getPostView()
     {
         return $this->postView;
+    }
+
+    /**
+     * @param array $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOrder()
+    {
+        return $this->order;
     }
 
 }

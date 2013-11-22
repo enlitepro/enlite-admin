@@ -67,6 +67,17 @@ class DefaultEntityService implements EntityServiceInterface
             $query->setParameter($key, $value . '%');
         }
 
+        $order = $this->entity->getOptions()->getOrder();
+        if (is_array($order) && count($order)) {
+            foreach ($order as $field => $type) {
+                if (is_numeric($field)) {
+                    $field = $type;
+                    $type = null;
+                }
+                $query->addOrderBy($field, $type);
+            }
+        }
+
         $pagination = new ORMPaginator($query);
         $pagination = new DoctrinePaginator($pagination);
         $pagination = new Paginator($pagination);
