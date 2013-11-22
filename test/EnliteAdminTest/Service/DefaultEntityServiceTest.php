@@ -122,7 +122,7 @@ class DefaultEntityServiceTest extends \PHPUnit_Framework_TestCase
     public function testGetList()
     {
         $service = $this->getMockBuilder('EnliteAdmin\Service\DefaultEntityService')
-            ->disableOriginalConstructor()->setMethods(['filterCriteria'])->getMock();
+            ->disableOriginalConstructor()->setMethods(['filterCriteria', 'addOrder'])->getMock();
 
         $service->expects($this->once())->method('filterCriteria')->with(['username' => 'John'])
             ->will($this->returnValue(['username' => 'John']));
@@ -131,6 +131,8 @@ class DefaultEntityServiceTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()->getMock();
         $builder->expects($this->once())->method('andWhere')->with('e.username like :username');
         $builder->expects($this->once())->method('setParameter')->with('username', 'John%');
+
+        $service->expects($this->once())->method('addOrder')->with($builder);
 
         $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
             ->disableOriginalConstructor()->getMock();
@@ -141,6 +143,72 @@ class DefaultEntityServiceTest extends \PHPUnit_Framework_TestCase
 
         $paginator = $service->getList(['username' => 'John']);
         $this->assertInstanceOf('Zend\Paginator\Paginator', $paginator);
+    }
+
+    public function testAddOrderEmpty()
+    {
+        $service = $this->getMockBuilder('EnliteAdmin\Service\DefaultEntityService')
+            ->disableOriginalConstructor()->setMethods(['getOrderOptions'])->getMock();
+
+        $service->expects($this->once())->method('getOrderOptions')
+            ->will($this->returnValue([]));
+
+        $builder = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
+            ->disableOriginalConstructor()->getMock();
+        $builder->expects($this->never())->method('addOrderBy');
+
+        /** @var DefaultEntityService $service */
+        $service->addOrder($builder);
+    }
+
+    public function testAddOrderSimpleArray()
+    {
+        $service = $this->getMockBuilder('EnliteAdmin\Service\DefaultEntityService')
+            ->disableOriginalConstructor()->setMethods(['getOrderOptions'])->getMock();
+
+        $service->expects($this->once())->method('getOrderOptions')
+            ->will($this->returnValue(['title']));
+
+        $builder = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
+            ->disableOriginalConstructor()->getMock();
+        $builder->expects($this->once())->method('addOrderBy')->with('e.title', null);
+
+        /** @var DefaultEntityService $service */
+        $service->addOrder($builder);
+    }
+
+
+    public function testAddOrderAssociationArray()
+    {
+        $service = $this->getMockBuilder('EnliteAdmin\Service\DefaultEntityService')
+            ->disableOriginalConstructor()->setMethods(['getOrderOptions'])->getMock();
+
+        $service->expects($this->once())->method('getOrderOptions')
+            ->will($this->returnValue(['title' => 'desc']));
+
+        $builder = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
+            ->disableOriginalConstructor()->getMock();
+        $builder->expects($this->once())->method('addOrderBy')->with('e.title', 'desc');
+
+        /** @var DefaultEntityService $service */
+        $service->addOrder($builder);
+    }
+
+    public function testAddOrderMixedArray()
+    {
+        $service = $this->getMockBuilder('EnliteAdmin\Service\DefaultEntityService')
+            ->disableOriginalConstructor()->setMethods(['getOrderOptions'])->getMock();
+
+        $service->expects($this->once())->method('getOrderOptions')
+            ->will($this->returnValue(['title' => 'asc', 'time']));
+
+        $builder = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
+            ->disableOriginalConstructor()->getMock();
+        $builder->expects($this->at(0))->method('addOrderBy')->with('e.title', 'asc');
+        $builder->expects($this->at(1))->method('addOrderBy')->with('e.time', null);
+
+        /** @var DefaultEntityService $service */
+        $service->addOrder($builder);
     }
 
     public function testGetFilterFormWithNoSetFilters()

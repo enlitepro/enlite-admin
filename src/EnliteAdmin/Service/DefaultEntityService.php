@@ -5,6 +5,7 @@
 
 namespace EnliteAdmin\Service;
 
+use Doctrine\ORM\QueryBuilder;
 use EnliteAdmin\Entities\Entity;
 use EnliteAdmin\Exception\RuntimeException;
 use Doctrine\ORM\EntityManager;
@@ -55,6 +56,35 @@ class DefaultEntityService implements EntityServiceInterface
     }
 
     /**
+     * Get order options
+     *
+     * @return array
+     */
+    protected function getOrderOptions()
+    {
+        return $this->entity->getOptions()->getOrder();
+    }
+
+    /**
+     * Add an order to a builder
+     *
+     * @param QueryBuilder $builder
+     */
+    public function addOrder(QueryBuilder $builder)
+    {
+        $order = $this->getOrderOptions();
+        if (is_array($order) && count($order)) {
+            foreach ($order as $field => $type) {
+                if (is_numeric($field)) {
+                    $field = $type;
+                    $type = null;
+                }
+                $builder->addOrderBy('e.' . $field, $type);
+            }
+        }
+    }
+
+    /**
      * @param  array     $criteria
      * @return Paginator
      */
@@ -67,16 +97,7 @@ class DefaultEntityService implements EntityServiceInterface
             $query->setParameter($key, $value . '%');
         }
 
-        $order = $this->entity->getOptions()->getOrder();
-        if (is_array($order) && count($order)) {
-            foreach ($order as $field => $type) {
-                if (is_numeric($field)) {
-                    $field = $type;
-                    $type = null;
-                }
-                $query->addOrderBy('e.' . $field, $type);
-            }
-        }
+        $this->addOrder($query);
 
         $pagination = new ORMPaginator($query);
         $pagination = new DoctrinePaginator($pagination);
