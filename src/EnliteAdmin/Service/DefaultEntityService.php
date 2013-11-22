@@ -74,7 +74,7 @@ class DefaultEntityService implements EntityServiceInterface
                     $field = $type;
                     $type = null;
                 }
-                $query->addOrderBy('e' . $field, $type);
+                $query->addOrderBy('e.' . $field, $type);
             }
         }
 
