@@ -10,7 +10,7 @@ return array(
             'EnliteAdmin' => array(
 
                 # module root path for your css and js files
-                'root_path' => __DIR__ . '/../assets',
+                'root_path' => realpath(__DIR__ . '/../assets'),
                 # collection od assets
                 'collections' => array(
 
