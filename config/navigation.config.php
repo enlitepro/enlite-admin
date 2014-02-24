@@ -3,7 +3,7 @@
 return array(
     'navigation' => array(
         'default' => array(
-            array(
+            'admin' => array(
                 'label' => 'Admin',
                 'route' => 'admin',
                 'resource' => 'admin'
