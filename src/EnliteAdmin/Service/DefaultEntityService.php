@@ -93,8 +93,14 @@ class DefaultEntityService implements EntityServiceInterface
         $query = $this->getRepository()->createQueryBuilder('e');
 
         foreach ($this->filterCriteria($criteria) as $key => $value) {
-            $query->andWhere('e.' . $key . ' like :' . $key);
-            $query->setParameter($key, $value . '%');
+            if (substr($key, 0, 3) == '%a%') {
+                $key = substr($key, 3);
+                $query->andWhere('e.' . $key . ' = :' . $key);
+                $query->setParameter($key, $value);
+            } else {
+                $query->andWhere('e.' . $key . ' like :' . $key);
+                $query->setParameter($key, $value . '%');
+            }
         }
 
         $this->addOrder($query);
@@ -125,6 +131,10 @@ class DefaultEntityService implements EntityServiceInterface
 
                 if (isset($meta->fieldMappings[$key])) {
                     $result[$key] = $value;
+                }
+
+                if (isset($meta->associationMappings[$key])) {
+                    $result['%a%' . $key] = $value;
                 }
             }
         }
