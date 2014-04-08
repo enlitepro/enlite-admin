@@ -1,0 +1,18 @@
+{% extends "enlite-admin/layout/layout" %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Execute {{ name }} ({{ command }})</h1>
+    </div>
+    <p>Result:</p>
+    <ul>
+        {% for text in output %}
+            <li>{{ text }}</li>
+        {% endfor %}
+    </ul>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            Return code: {{ returnVar }}
+        </div>
+    </div>
+{% endblock %}

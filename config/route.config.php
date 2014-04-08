@@ -14,6 +14,27 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+                    'commands' => [
+                        'type' => 'literal',
+                        'options' => [
+                            'route' => '/commands',
+                            'defaults' => [
+                                'action' => 'commands',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'execute' => [
+                                'type' => 'segment',
+                                'options' => [
+                                    'route' => '/execute/:command',
+                                    'defaults' => [
+                                        'action' => 'execute-command'
+                                    ]
+                                ]
+                            ]
+                        ],
+                    ],
                     'entity' => array(
                         'type' => 'literal',
                         'options' => array(

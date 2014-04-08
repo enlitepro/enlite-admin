@@ -1,0 +1,27 @@
+{% extends "enlite-admin/layout/layout" %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Allow commands</h1>
+    </div>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Command</th>
+            <th></th>
+        </tr>
+        {% for name, command in commands %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ command }}</td>
+                <td>
+                    <form action="{{ url('admin/commands/execute', {'command': name}) }}" method="post">
+                        <button type="submit" class="btn btn-mini">Execute</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

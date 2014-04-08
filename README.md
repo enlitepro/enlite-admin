@@ -10,7 +10,7 @@ The recommended way to install is through composer.
 ```json
 {
     "require": {
-        "enlitepro/enlite-admin": "1.1.*"
+        "enlitepro/enlite-admin": "1.2.*"
     }
 }
 ```
@@ -19,3 +19,8 @@ USAGE
 =====
 
 Add `EnliteAdmin` to your `config/application.config.php` to enable module.
+
+COMMANDS
+========
+
+You can add commands in $config['admin']['commands']. It you can execute from admin/commands page.

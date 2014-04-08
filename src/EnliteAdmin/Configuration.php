@@ -23,6 +23,14 @@ class Configuration extends AbstractOptions
     protected $enableNavigation = true;
 
     /**
+     * The commands
+     * ['name' => 'command']
+     *
+     * @var array
+     */
+    protected $commands = [];
+
+    /**
      * Set value of Entities
      *
      * @param  array $entities
@@ -66,6 +74,22 @@ class Configuration extends AbstractOptions
     public function getEnableNavigation()
     {
         return $this->enableNavigation;
+    }
+
+    /**
+     * @param array $commands
+     */
+    public function setCommands($commands)
+    {
+        $this->commands = $commands;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCommands()
+    {
+        return $this->commands;
     }
 
 }
